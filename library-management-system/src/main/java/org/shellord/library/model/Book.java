@@ -1,7 +1,5 @@
 package org.shellord.library.model;
 
-import java.time.LocalDate;
-
 public class Book {
     private String isbn;
     private String title;
@@ -15,11 +13,22 @@ public class Book {
         this.title = title;
         this.author = author;
         this.genre = genre;
-        this.publishedYear = LocalDate.now().getYear();
+        this.publishedYear = publishedYear;
         this.availableCopies = availableCopies;
     }
 
     public Book(){}
+
+    public void decrementCopy(){
+        if(availableCopies == 0){
+            throw new IllegalStateException("No current copy available");
+        }
+        this.availableCopies--;
+    }
+
+    public void incrementCopy(){
+        this.availableCopies++;
+    }
 
     public void setIsbn(String isbn) {
         this.isbn = isbn;
@@ -39,5 +48,24 @@ public class Book {
     }
     public void setAvailableCopies(int availableCopies) {
         this.availableCopies = availableCopies;
+    }
+
+    public String getIsbn() {
+        return isbn;
+    }
+    public String getTitle() {
+        return title;
+    }
+    public String getAuthor() {
+        return author;
+    }
+    public String getGenre() {
+       return genre;
+    }
+    public int getPublishedYear() {
+        return publishedYear;
+    }
+    public int getAvailableCopies() {
+        return availableCopies;
     }
 }
